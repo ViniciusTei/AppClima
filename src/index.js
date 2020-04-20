@@ -9,7 +9,7 @@ const inputSearchCity = document.getElementById('inputSearchCity');
 
 //Constantes para a Url da api
 const baseUrl = 'http://dataservice.accuweather.com/';
-const key = 'keckW8GVZx87IJaGNDpQxFMzKopmSYMv';
+const key = '';
 const language = 'pt-br';
 
 let topCities;
