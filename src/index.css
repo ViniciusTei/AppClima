@@ -1,0 +1,21 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.description {
+    font-size: 12px;
+}
+#temperature {
+    font-size: 32px;
+}
+.container {
+    width: 500px;
+    height: 800px; 
+}
+.label {
+    margin-left: 10px;
+
+}

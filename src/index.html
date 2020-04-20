@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>App Clima</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row  justify-content-between">
+        <div class="col">
+          <h1>App Clima</h1>
+        </div>
+        <dvi class="col">
+            <input type="text" name="searchCity" id="inputSearchCity">
+            <button type="button" class="light" id="btnSearchCity" onclick="setLocationSearched()">Pesquisar</button>
+        </dvi>
+      </div>
+      <div class="row justify-content-end align-items-center">
+        <div class="col">
+          <div class="card text-center" style="width: 28rem;">
+            <div class="card-header ">
+              <div class="row justify-content-between">
+              <span id="labelCityInfo">City info goes here</span>
+              <img src="" alt="" id="img">
+            </div>
+            <div class="card-body body">
+              <div class="row ">
+                <h3 class="card-title" id="temperature"></h3>
+              </div>
+              <div class="row">
+                <p class="card-text description" id="description"></p>
+              </div>
+              <div class="row temperature">
+                <p class="card-text" id="minTemperature"></p>
+                <p class="card-text label"> mínima</p>
+              </div>
+              <div class="row temperature">
+                <p class="card-text" id="maxTemperature"></p>
+                <p class="card-text label"> máxima</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
