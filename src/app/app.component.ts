@@ -28,30 +28,63 @@ export class AppComponent implements OnInit {
   constructor (private api: ApiService) {}
 
   ngOnInit() {
-    navigator.geolocation.getCurrentPosition(position => {
-      this.api.getCityInfo(position.coords.latitude, position.coords.longitude)
-        .subscribe(res => {
-          this.currentCity = res;
-          //console.log(this.currentCity);
-          this.labelInfo = `${this.currentCity.LocalizedName} - ${this.currentCity.AdministrativeArea.LocalizedName} - ${this.currentCity.Country.LocalizedName}`;
-          this.api.getForecastDaily(this.currentCity.Key)
-            .subscribe(
-              res => {
-                //console.log(res)
-                this.minima = `${this.convertToCelsius(res.DailyForecasts[0].Temperature.Minimum.Value) + '°C'}`
-                this.maxima = `${this.convertToCelsius(res.DailyForecasts[0].Temperature.Maximum.Value) + '°C'}`
-              }
-            )
-          this.api.getForecast(this.currentCity.Key)
+    var user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+    if(user == null) {
+      navigator.geolocation.getCurrentPosition(position => {
+        let pos = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        }
+        localStorage.setItem('user', JSON.stringify(pos));
+        this.api.getCityInfo(position.coords.latitude, position.coords.longitude)
+          .subscribe(res => {
+            this.currentCity = res;
+            //console.log(this.currentCity);
+            this.labelInfo = `${this.currentCity.LocalizedName} - ${this.currentCity.AdministrativeArea.LocalizedName} - ${this.currentCity.Country.LocalizedName}`;
+            this.api.getForecastDaily(this.currentCity.Key)
               .subscribe(
                 res => {
                   //console.log(res)
-                  this.subtitle = res[0].IconPhrase;
-                  this.temperatura = this.convertToCelsius(res[0].Temperature.Value) + '°C'
+                  this.minima = `${this.convertToCelsius(res.DailyForecasts[0].Temperature.Minimum.Value) + '°C'}`
+                  this.maxima = `${this.convertToCelsius(res.DailyForecasts[0].Temperature.Maximum.Value) + '°C'}`
                 }
               )
-        })
-    })
+            this.api.getForecast(this.currentCity.Key)
+                .subscribe(
+                  res => {
+                    //console.log(res)
+                    this.subtitle = res[0].IconPhrase;
+                    this.temperatura = this.convertToCelsius(res[0].Temperature.Value) + '°C'
+                  }
+                )
+          })
+      })
+    } else {
+      this.api.getCityInfo(user.latitude, user.longitude)
+          .subscribe(res => {
+            this.currentCity = res;
+            //console.log(this.currentCity);
+            this.labelInfo = `${this.currentCity.LocalizedName} - ${this.currentCity.AdministrativeArea.LocalizedName} - ${this.currentCity.Country.LocalizedName}`;
+            this.api.getForecastDaily(res.Key)
+              .subscribe(
+                res => {
+                  //console.log(res)
+                  this.minima = `${this.convertToCelsius(res.DailyForecasts[0].Temperature.Minimum.Value) + '°C'}`
+                  this.maxima = `${this.convertToCelsius(res.DailyForecasts[0].Temperature.Maximum.Value) + '°C'}`
+                }
+              )
+            this.api.getForecast(res.Key)
+                .subscribe(
+                  res => {
+                    //console.log(res)
+                    this.subtitle = res[0].IconPhrase;
+                    this.temperatura = this.convertToCelsius(res[0].Temperature.Value) + '°C'
+                  }
+                )
+          })
+    }
+    
   }
 
   onChangeSearch(event: any) {
@@ -69,6 +102,11 @@ export class AppComponent implements OnInit {
 
   selectEvent(event: any){
   console.log(event);
+  let pos = {
+    latitude: event.GeoPosition.Latitude,
+    longitude: event.GeoPosition.Longitude
+  }
+  localStorage.setItem('user', JSON.stringify(pos));
   this.api.getCityInfo(event.GeoPosition.Latitude, event.GeoPosition.Longitude)
         .subscribe(res => {
           this.currentCity = res;

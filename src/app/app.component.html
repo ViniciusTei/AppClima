@@ -16,7 +16,7 @@
       </ng-autocomplete>
 
       <ng-template #itemTemplate let-item>
-        <a [innerHTML]="item.LocalizedName"></a>
+        <a [innerHTML]="item.LocalizedName + ',' + item.AdministrativeArea.ID"></a>
       </ng-template>
       <ng-template #notFoundTemplate let-item >
         <a>NOT FOUND</a>
