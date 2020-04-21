@@ -7,6 +7,7 @@
 
 .description {
     font-size: 12px;
+    margin-top: -20px;
 }
 #temperature {
     font-size: 32px;
@@ -19,3 +20,14 @@
     margin-left: 10px;
 
 }
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.autocomplete {
+    position: relative;
+    width: fit-content;
+    z-index: 1000;
+}
+

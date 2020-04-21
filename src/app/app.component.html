@@ -1,0 +1,52 @@
+<div class="container">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand">APP CLIMA</a>
+    <div class="ng-autocomplete autocomplete">
+      <ng-autocomplete
+        #searchAuto
+        [data]="arraySearch"
+        [searchKeyword]="LocalizedName"
+        (selected)='selectEvent($event)'
+        (inputChanged)='onChangeSearch($event)'
+        [itemTemplate]='itemTemplate'
+        [notFoundTemplate]='notFoundTemplate'
+        [placeHolder]="placeholder"
+      >
+
+      </ng-autocomplete>
+
+      <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.LocalizedName"></a>
+      </ng-template>
+      <ng-template #notFoundTemplate let-item >
+        <a>NOT FOUND</a>
+      </ng-template>
+    </div>
+  </nav>
+  <div class="row justify-content-center align-items-center">
+    <div class="col">
+      <div class="card text-center text-white bg-secondary" style="width: 470px">
+        <div class="card-header ">
+          <span id="labelCityInfo">{{labelInfo}}</span>
+        </div>
+        <div class="card-body text-center">
+          <div class="row justify-content-center">
+            <h3 class="card-title">{{temperatura}}</h3>
+          </div>
+          <div class="row justify-content-center">
+            <p class="card-text description" id="description">{{subtitle}}</p>
+          </div>
+          <div class="row temperature justify-content-center">
+            <p class="card-text" id="minTemperature">{{minima}}</p>
+            <p class="card-text label"> mínima</p>
+          </div>
+          <div class="row temperature justify-content-center">
+            <p class="card-text" id="maxTemperature">{{maxima}}</p>
+            <p class="card-text label"> máxima</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
